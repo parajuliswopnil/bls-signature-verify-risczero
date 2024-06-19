@@ -3,7 +3,7 @@
 
 
 use risc0_zkvm::guest::env;
-use bls_signatures::{PrivateKey, PublicKey};
+use bls_signatures::{PrivateKey, PublicKey, Serialize};
 
 risc0_zkvm::guest::entry!(main);
 
@@ -17,7 +17,7 @@ fn main() {
     let private = PrivateKey::from_string("2523408640174661621672680781521680564539321153090028238087879155142149870407").unwrap();
 
     let pub_key = private.public_key();
-    _ = pub_key;
+    println!("the public key is {:?}", pub_key.as_bytes());
 
     // TODO: do something with the input
 
