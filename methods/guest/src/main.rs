@@ -14,11 +14,14 @@ fn main() {
     // read the input
     let input: u32 = env::read();
 
-    let private = PrivateKey::from_string("2523408640174661621672680781521680564539321153090028238087879155142149870407").unwrap();
+    let private_key = PrivateKey::from_string("2523408640174661621672680781521680564539321153090028238087879155142149870407").unwrap();
 
-    let pub_key = private.public_key();
-    println!("the public key is {:?}", pub_key.as_bytes());
+    let message = b"message";
 
+    let signature = private_key.sign(message);
+
+    let public_key = private_key.public_key();
+    assert!(public_key.verify(signature, message));
     // TODO: do something with the input
 
     // write public output to the journal
